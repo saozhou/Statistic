@@ -22,4 +22,6 @@ public interface GdpMapper {
 	void deleteByYearPlace(String year, String place);
 
 	void save(Gdp ce);
+
+	List<Gdp> findByYearPlace(String year, String place);
 }

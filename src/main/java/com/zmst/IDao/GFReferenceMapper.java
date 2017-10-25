@@ -22,4 +22,6 @@ public interface GFReferenceMapper {
 	void deleteByYearPlace(String year, String place);
 
 	void save(GFReference gf);
+
+	List<GFReference> findByYearPlace(String year, String place);
 }

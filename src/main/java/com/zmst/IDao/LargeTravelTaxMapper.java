@@ -17,5 +17,7 @@ public interface LargeTravelTaxMapper {
 
 	void deleteByYearPlace(String year, String place);
 
+	void save(LargeTravelTax largeTax);
+
  
 }

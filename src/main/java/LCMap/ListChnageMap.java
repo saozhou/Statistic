@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.zmst.Domain.AllCodeDictionary;
+import com.zmst.Domain.GFReference;
 
 public class ListChnageMap {
 	public static Map<String, String> codeDictionaryChange(List<AllCodeDictionary> list){  
@@ -45,5 +46,18 @@ public class ListChnageMap {
 	      }  
 	      
 	      return map;  
+	}
+
+	public static  Map<String, String> gfReferenceChange(List<GFReference> list) {
+		// TODO Auto-generated method stub
+		  int i=0;
+	      Map<String,String> map=new HashMap<String, String>();  
+	      for(;i<list.size();i++){  
+	    	 
+	        map.put(list.get(i).getIncode(), list.get(i).getIncoefficient());  
+	      }  
+	      
+	      return map;  
+		 
 	}  
 }

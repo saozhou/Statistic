@@ -27,7 +27,7 @@
     delete from tbl_classtraveltax
     where year=#{0} and place=#{1}
   </delete>
-  <insert id="insert" parameterType="com.zmst.Domain.ClassTravelTax">
+  <insert id="save" parameterType="com.zmst.Domain.ClassTravelTax">
     insert into tbl_classtraveltax (CTTId, Year, Place, 
       ClCode, ClName, CTTax
       )

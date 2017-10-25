@@ -12,11 +12,11 @@
   <sql id="Base_Column_List">
     LCId, Year, Place, LaCode, LaName, LaGdp
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="findByYearPlace"  resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from tbl_largegdp
-    where LCId = #{lcid,jdbcType=INTEGER}
+    where  year=#{0} and place = #{1}
   </select>
   
   <delete id="deleteByYearPlace">

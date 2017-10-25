@@ -19,6 +19,24 @@
     from tbl_subtraveltax
     where STTID = #{sttid,jdbcType=INTEGER}
   </select>
+  
+  <select id="findSubTravelTaxByYearPlace"   resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_subtraveltax
+    where year = #{0} and place = #{1}
+  </select>
+  
+   <insert id="save" parameterType="com.zmst.Domain.SubTravelTax">
+    insert into tbl_subtraveltax (STTID, Year, Place, 
+      SmCode, SmName, STTax, 
+      LaCode)
+    values (#{sttid,jdbcType=INTEGER}, #{year,jdbcType=VARCHAR}, #{place,jdbcType=VARCHAR}, 
+      #{smcode,jdbcType=VARCHAR}, #{smname,jdbcType=VARCHAR}, #{sttax,jdbcType=DOUBLE}, 
+      #{lacode,jdbcType=VARCHAR})
+  </insert>
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tbl_subtraveltax
     where STTID = #{sttid,jdbcType=INTEGER}

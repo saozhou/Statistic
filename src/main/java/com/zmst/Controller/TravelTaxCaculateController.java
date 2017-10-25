@@ -15,6 +15,7 @@ import com.alibaba.fastjson.JSON;
 import com.zmst.Domain.SubTax;
 import com.zmst.Domain.SubTravelTax;
 import com.zmst.Service.TaxCalculateService;
+import com.zmst.Service.TravelTaxCalculateService;
 import com.zmst.Tools.HttpReturn;
 
 /**
@@ -25,9 +26,9 @@ import com.zmst.Tools.HttpReturn;
 @Controller
 @RequestMapping("/TravelTaxCaculate")
 public class TravelTaxCaculateController {
-	private TaxCalculateService taxService;
+	private TravelTaxCalculateService travelTaxService;
 	/**
-	 *小类旅游税收调取及计算全部 
+	 *小类旅游税收调取及计算 
 	 * 
 	 */
 	@RequestMapping(value="/subTaxGet",method=RequestMethod.POST)  
@@ -46,7 +47,7 @@ public class TravelTaxCaculateController {
 				place=city;
 			}
 		
-	    List<SubTravelTax> subTravelTax =	taxService.getSubTaxt(year,place);
+	    List<SubTravelTax> subTravelTax =	travelTaxService.getSubTravelTaxt(year,place);
 	    
 		 try {
 				request.setCharacterEncoding("utf-8");
@@ -55,7 +56,7 @@ public class TravelTaxCaculateController {
 				e.printStackTrace();
 			}  //这里不设置编码会有乱码
 		      response.setContentType("text/html;charset=utf-8");
-			  String json = JSON.toJSONString(allcentral);
+			  String json = JSON.toJSONString(subTravelTax);
 			  HttpReturn.reponseBody(response, json);;
 	}
 }

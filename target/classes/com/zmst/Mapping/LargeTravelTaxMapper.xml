@@ -23,6 +23,16 @@
     where LTTId = #{lttid,jdbcType=INTEGER}
   </delete>
   
+    <insert id="save" parameterType="com.zmst.Domain.LargeTravelTax">
+    insert into tbl_largetraveltax (LTTId, Year, Place, 
+      LaCode, LaName, LTTax
+      )
+    values (#{lttid,jdbcType=INTEGER}, #{year,jdbcType=VARCHAR}, #{place,jdbcType=VARCHAR}, 
+      #{lacode,jdbcType=VARCHAR}, #{laname,jdbcType=VARCHAR}, #{lttax,jdbcType=DOUBLE}
+      )
+  </insert>
+  
+  
   <delete id="deleteByYearPlace" >
     delete from tbl_largetraveltax
     where year=#{0} and place=#{1}

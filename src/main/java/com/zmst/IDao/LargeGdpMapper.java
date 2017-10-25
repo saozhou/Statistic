@@ -1,5 +1,7 @@
 package com.zmst.IDao;
 
+import java.util.List;
+
 import com.zmst.Domain.LargeGdp;
 
 public interface LargeGdpMapper {
@@ -18,4 +20,6 @@ public interface LargeGdpMapper {
 	void deleteByYearPlace(String year, String place);
 
 	void save(LargeGdp largegdp);
+
+	List<LargeGdp> findByYearPlace(String year, String place);
 }

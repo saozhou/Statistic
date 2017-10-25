@@ -112,9 +112,9 @@ public class FileUploadServiceImpl implements FileUploadService {
 
 	public boolean getExitsCorfficient(String year, String place) {
 		// TODO Auto-generated method stub
-		List<GFCoefficient>gfCorfficientList=null;
-		gfCorfficientList=gfCorfficientDao.selectByYearPlace(year,place);
-		if(gfCorfficientList!=null){
+		GFCoefficient gfCorfficient=null;
+		gfCorfficient=gfCorfficientDao.selectByYearPlace(year,place);
+		if(gfCorfficient!=null){
 			return true;
 		}
 		
@@ -221,13 +221,22 @@ public class FileUploadServiceImpl implements FileUploadService {
 		}
 	}
 
+	/**
+	 * gdp分解
+	 * 1.将已存在的大类gdp挑出
+	 */
 	public void gdpAnalyze(List<Gdp> gdpList, String year, String place) {
 		// TODO Auto-generated method stub
 		List<LargeGdp>largeGdpList = new ArrayList<LargeGdp>();
+		
 		List<GdpMiddleTable>gdpMiddleList = new ArrayList<GdpMiddleTable>();
+		
 		List<SubGdp>subGdpList = new ArrayList<SubGdp>();
+		
 		List<LargeAndClassDictionary>largeAndClass=largeAndClassDao.findAll();
+		
 		GdpAnalyze.sloveLSMGdp(gdpList,gdpMiddleList,subGdpList,largeAndClass,largeGdpList,year,place);
+		
 		for(LargeGdp largegdp:largeGdpList){
 			largeGdpDao.save(largegdp);
 		}

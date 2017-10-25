@@ -31,39 +31,10 @@ public class GdpAnalyze {
 				subGdp.setSmname(gdp.getGdpname());
 				subGdp.setSmgdp(gdp.getGdp());
 				subGdpList.add(subGdp);
-			} 
-			
-		}
-		
-		for(Gdp gdp:gdpList){
-			if(gdp.getGdpcode().length()>4){
-				String[] source = gdp.getGdpcode().split("-");
-				double mix = Integer.valueOf(source[0]);
-				double max = Integer.valueOf(source[2]);
-				double gdps = gdp.getGdp();
-				for(LargeGdp largeGdp:largeGdpList){
-					int gdpCode = Integer.valueOf(largeGdp.getLacode());
-					if(gdpCode>=mix&&gdpCode<=max){
-						gdps=gdps-largeGdp.getLagdp();
-					}else{
-						continue;
-					}
-				}
-				
-				if(gdps>0){
-					GdpMiddleTable gdpMiddleTable = new GdpMiddleTable();
-					gdpMiddleTable.setGdp(gdps);
-					gdpMiddleTable.setPlace(place);
-					gdpMiddleTable.setLoli(mix);
-					gdpMiddleTable.setUpli(max);
-					gdpMiddleList.add(gdpMiddleTable);
-				}else{
-					continue;
-				}
-				 
 			}
-		}
-		
-	}
+			}
+			
+		  }
+		 
 
 }

@@ -378,7 +378,7 @@ public class FileUploadController {
 		        	  deleteService.DeleteTravelGdp(year, place);
 					  deleteService.DeleteGDP(year,place);
 		        	  uploadService.updateGdp(gdpList,year,place);
-		        	  uploadService.gdpAnalyze(gdpList,year,place);
+		        	  
 		        	  
 		        }else{
 		        	uploadService.saveGdp(gdpList);

@@ -24,7 +24,7 @@
     where GFid = #{gfid,jdbcType=INTEGER}
   </select>
   
-   <select id="selectByYearPlace"  resultMap="BaseResultMap">
+   <select id="selectByYearPlace"  resultType="com.zmst.Domain.GFCoefficient">
     select 
     <include refid="Base_Column_List" />
     from tbl_gfcoefficient

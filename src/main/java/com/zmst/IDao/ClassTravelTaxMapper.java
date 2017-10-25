@@ -16,4 +16,6 @@ public interface ClassTravelTaxMapper {
     int updateByPrimaryKey(ClassTravelTax record);
 
 	void deleteByYearPlace(String year, String place);
+
+	void save(ClassTravelTax classTax);
 }

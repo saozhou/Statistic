@@ -17,9 +17,11 @@ public interface GFCoefficientMapper {
 
     int updateByPrimaryKey(GFCoefficient record);
 
-	List<GFCoefficient> selectByYearPlace(String year, String place);
+	GFCoefficient selectByYearPlace(String year, String place);
 
 	void deleteByYearPlace(String year, String place);
 
 	void save(GFCoefficient corfficient);
+
+	GFCoefficient findCorfficient(String year, String place);
 }
