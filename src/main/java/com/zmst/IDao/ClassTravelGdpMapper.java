@@ -16,4 +16,6 @@ public interface ClassTravelGdpMapper {
     int updateByPrimaryKey(ClassTravelGdp record);
 
 	void deleteByYearPlace(String year, String place);
+
+	void save(ClassTravelGdp classTravelDao);
 }

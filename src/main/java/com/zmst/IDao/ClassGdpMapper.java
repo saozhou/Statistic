@@ -16,4 +16,6 @@ public interface ClassGdpMapper {
     int updateByPrimaryKey(ClassGdp record);
 
 	void deleteByYearPlace(String year, String place);
+
+	void save(ClassGdp cla);
 }

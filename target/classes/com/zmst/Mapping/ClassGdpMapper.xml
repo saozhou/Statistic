@@ -29,7 +29,8 @@
     delete from tbl_classgdp
     where CGId = #{cgid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.zmst.Domain.ClassGdp">
+  
+  <insert id="save" parameterType="com.zmst.Domain.ClassGdp">
     insert into tbl_classgdp (CGId, Year, Place, 
       ClCode, ClName, ClGdp
       )

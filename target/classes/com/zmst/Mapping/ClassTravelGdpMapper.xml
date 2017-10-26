@@ -28,7 +28,7 @@
     where year=#{0} and place=#{1}
   </delete>
   
-  <insert id="insert" parameterType="com.zmst.Domain.ClassTravelGdp">
+  <insert id="save" parameterType="com.zmst.Domain.ClassTravelGdp">
     insert into tbl_classtravelgdp (CTGId, Year, Place, 
       ClCode, ClName, CTGdp
       )
