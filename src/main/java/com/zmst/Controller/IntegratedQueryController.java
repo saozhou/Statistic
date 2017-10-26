@@ -14,7 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
+import com.zmst.Domain.TravelClassGdpContribute;
+import com.zmst.Domain.TravelClassTaxContribute;
+import com.zmst.Domain.TravelIndustryGdpContribute;
+import com.zmst.Domain.TravelIndustryTaxContribute;
 import com.zmst.Domain.TravelLargeGdpContribute;
+import com.zmst.Domain.TravelLargeTaxContribute;
 import com.zmst.Service.IntegratedQueryService;
 import com.zmst.Tools.HttpReturn;
  
@@ -30,16 +35,16 @@ public class IntegratedQueryController {
 
 	private IntegratedQueryService integratedQueryService;
 	/**
-	 * gdp综合查询
+	 * gdp大类综合查询
 	 */
 	
-	@RequestMapping(value="/travelLargeComSearch",method=RequestMethod.POST)
+	@RequestMapping(value="/largeGdpContributeSearch",method=RequestMethod.POST)
 	@ResponseBody
-	public void travelGdpget(HttpServletRequest request,HttpServletResponse response){
+	public void largeGdpConrtibute(HttpServletRequest request,HttpServletResponse response){
 
 		
 		
-		String path = "D:\\Users";  
+		 
         HttpSession session = request.getSession();		 
 		String year = (String) session.getAttribute("year");
 		String city =null;
@@ -71,6 +76,236 @@ public class IntegratedQueryController {
 		}  //这里不设置编码会有乱码
 	      response.setContentType("text/html;charset=utf-8");
 		  String json = JSON.toJSONString(travelLargeGdpContributeList);
+		  HttpReturn.reponseBody(response, json);
+		 
+	}
+	
+	
+	/**
+	 * gdp贡献门类查询
+	 */
+	
+	@RequestMapping(value="/classGdpContributeSearch",method=RequestMethod.POST)
+	@ResponseBody
+	public void classGdpConrtibute(HttpServletRequest request,HttpServletResponse response){
+
+		
+		
+		 
+        HttpSession session = request.getSession();		 
+		String year = (String) session.getAttribute("year");
+		String city =null;
+		city=(String) session.getAttribute("city");
+		String county=null; 
+		county= (String)session.getAttribute("county");
+		String place = null;
+		if(county!=null){
+			 place=county;
+		}else{
+			place=city;
+		}
+		
+         List<TravelClassGdpContribute> classGdpContributeList = new ArrayList<TravelClassGdpContribute>();
+         
+         classGdpContributeList = integratedQueryService.getClassGdpContribute(year,place,classGdpContributeList);
+         
+		if(classGdpContributeList.size()==0){
+			classGdpContributeList = integratedQueryService.getClassGdpContributeList(classGdpContributeList,year, place);
+			 
+			}
+			
+		
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  //这里不设置编码会有乱码
+	      response.setContentType("text/html;charset=utf-8");
+		  String json = JSON.toJSONString(classGdpContributeList);
+		  HttpReturn.reponseBody(response, json);
+		 
+	}
+	
+	 /**
+	  * 
+	  * @param request
+	  * @param response
+	  *gdp 产业1
+	  */
+	@RequestMapping(value="/industryGdpContributeSearch",method=RequestMethod.POST)
+	@ResponseBody
+	public void industryGdpConrtibute(HttpServletRequest request,HttpServletResponse response){
+
+        HttpSession session = request.getSession();		 
+		String year = (String) session.getAttribute("year");
+		String city =null;
+		city=(String) session.getAttribute("city");
+		String county=null; 
+		county= (String)session.getAttribute("county");
+		String place = null;
+		if(county!=null){
+			 place=county;
+		}else{
+			place=city;
+		}
+		
+         List<TravelIndustryGdpContribute> industryGdpContributeList = new ArrayList<TravelIndustryGdpContribute>();
+         
+         industryGdpContributeList = integratedQueryService.getIndustryGdpContribute(year,place,industryGdpContributeList);
+         
+		if(industryGdpContributeList.size()==0){
+			industryGdpContributeList = integratedQueryService.getIndustryGdpContributeList(industryGdpContributeList,year, place);
+			 
+			}
+			
+		
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  //这里不设置编码会有乱码
+	      response.setContentType("text/html;charset=utf-8");
+		  String json = JSON.toJSONString(industryGdpContributeList);
+		  HttpReturn.reponseBody(response, json);
+		 
+	}
+	
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * 税收贡献大类
+	 */
+	@RequestMapping(value="/largeTaxContributeSearch",method=RequestMethod.POST)
+	@ResponseBody
+	public void largeTaxConrtibute(HttpServletRequest request,HttpServletResponse response){
+
+        HttpSession session = request.getSession();		 
+		String year = (String) session.getAttribute("year");
+		String city =null;
+		city=(String) session.getAttribute("city");
+		String county=null; 
+		county= (String)session.getAttribute("county");
+		String place = null;
+		if(county!=null){
+			 place=county;
+		}else{
+			place=city;
+		}
+	    List<TravelLargeTaxContribute> travelLargeTaxContributeList = new ArrayList<TravelLargeTaxContribute>();
+        
+	    travelLargeTaxContributeList = integratedQueryService.getTravelLargeTaxContribute(year,place,travelLargeTaxContributeList);
+		if(travelLargeTaxContributeList.size()==0){
+			travelLargeTaxContributeList = integratedQueryService.getLargeTaxContribute(travelLargeTaxContributeList,year, place);
+			 
+		 
+			}
+			
+		
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  //这里不设置编码会有乱码
+	      response.setContentType("text/html;charset=utf-8");
+		  String json = JSON.toJSONString(travelLargeTaxContributeList);
+		  HttpReturn.reponseBody(response, json);
+		 
+	}
+	
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * 税收门类
+	 */
+
+	@RequestMapping(value="/classTaxContributeSearch",method=RequestMethod.POST)
+	@ResponseBody
+	public void classTaxConrtibute(HttpServletRequest request,HttpServletResponse response){
+
+		
+		
+		 
+        HttpSession session = request.getSession();		 
+		String year = (String) session.getAttribute("year");
+		String city =null;
+		city=(String) session.getAttribute("city");
+		String county=null; 
+		county= (String)session.getAttribute("county");
+		String place = null;
+		if(county!=null){
+			 place=county;
+		}else{
+			place=city;
+		}
+		
+         List<TravelClassTaxContribute> classTaxContributeList = new ArrayList<TravelClassTaxContribute>();
+         
+         classTaxContributeList = integratedQueryService.getClassTaxContribute(year,place,classTaxContributeList);
+         
+		if(classTaxContributeList.size()==0){
+			classTaxContributeList = integratedQueryService.getClassTaxContributeList(classTaxContributeList,year, place);
+			 
+			}
+			
+		
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  //这里不设置编码会有乱码
+	      response.setContentType("text/html;charset=utf-8");
+		  String json = JSON.toJSONString(classTaxContributeList);
+		  HttpReturn.reponseBody(response, json);
+		 
+	}
+	
+	 /**
+	  * 
+	  * @param request
+	  * @param response
+	  *tax 产业1
+	  */
+	@RequestMapping(value="/industryTaxContributeSearch",method=RequestMethod.POST)
+	@ResponseBody
+	public void industryTaxConrtibute(HttpServletRequest request,HttpServletResponse response){
+
+       HttpSession session = request.getSession();		 
+		String year = (String) session.getAttribute("year");
+		String city =null;
+		city=(String) session.getAttribute("city");
+		String county=null; 
+		county= (String)session.getAttribute("county");
+		String place = null;
+		if(county!=null){
+			 place=county;
+		}else{
+			place=city;
+		}
+		
+        List<TravelIndustryTaxContribute> industryTaxContributeList = new ArrayList<TravelIndustryTaxContribute>();
+        
+        industryTaxContributeList = integratedQueryService.getIndustryTaxContribute(year,place,industryTaxContributeList);
+        
+		if(industryTaxContributeList.size()==0){
+			industryTaxContributeList = integratedQueryService.getIndustryTaxContributeList(industryTaxContributeList,year, place);
+			 
+			}
+			
+		
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  //这里不设置编码会有乱码
+	      response.setContentType("text/html;charset=utf-8");
+		  String json = JSON.toJSONString(industryTaxContributeList);
 		  HttpReturn.reponseBody(response, json);
 		 
 	}

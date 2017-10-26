@@ -20,4 +20,6 @@ public interface TravelLargeGdpContributeMapper {
 	void deleteByYearPlace(String year, String place);
 
 	List<TravelLargeGdpContribute> getByYearPlace(String year, String place);
+
+	void save(TravelLargeGdpContribute travelLargeGdpContribute);
 }
